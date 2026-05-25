@@ -24,6 +24,8 @@ public class AuditController {
 
     @GetMapping("/today")
     @PreAuthorize("hasAnyRole('moderator', 'admin', 'super_admin')")
+    @Operation(summary = "Логи за сегодня",
+            description = "Все действия пользователей за текущий день. Доступно модератору, админу и супер-админу")
     public Page<AuditLog> getToday(@RequestParam(defaultValue = "0") int page,
                                    @RequestParam(defaultValue = "50") int size) {
         return auditService.getToday(page, size);
@@ -31,6 +33,8 @@ public class AuditController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('moderator', 'admin', 'super_admin')")
+    @Operation(summary = "Все логи",
+            description = "Журнал действий за всё время. Доступно модератору, админу и супер-админу")
     public Page<AuditLog> getAll(@RequestParam(defaultValue = "0") int page,
                                  @RequestParam(defaultValue = "50") int size) {
         return auditService.getAll(page, size);
@@ -38,6 +42,8 @@ public class AuditController {
 
     @GetMapping("/user/{userId}")
     @PreAuthorize("hasAnyRole('moderator', 'admin', 'super_admin')")
+    @Operation(summary = "Логи пользователя",
+            description = "Поиск всех действий конкретного пользователя по его ID")
     public Page<AuditLog> getByUserId(@PathVariable UUID userId,
                                       @RequestParam(defaultValue = "0") int page,
                                       @RequestParam(defaultValue = "50") int size) {

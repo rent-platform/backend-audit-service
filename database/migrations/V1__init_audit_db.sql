@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 CREATE TABLE audit_log (
     id          BIGSERIAL    PRIMARY KEY,
     service     VARCHAR(50)  NOT NULL,
